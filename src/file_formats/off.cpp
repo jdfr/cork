@@ -27,6 +27,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <limits>
 using std::ifstream;
 using std::ofstream;
 using std::endl;
@@ -84,6 +85,7 @@ int writeOFF(string filename, FileMesh *data)
     ofstream out;
     out.open(filename.c_str());
     if(!out) return 1;
+    out.precision(8);//std::numeric_limits<long double>::digits10 + 1)
     
     // "OFF"
     out << "OFF" << endl;
