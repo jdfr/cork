@@ -11,13 +11,10 @@ if(MSVC)
 endif()
 
 message("->CORK REQUIRES GMP COMPILED WITH C++ SUPPORT. PLEASE, MAKE SURE THAT GMP HEADER AND LIBRARIES ARE IN THEIR EXPECTED LOCATIONS")
-#apparently, find_path and find_library fail if using a standalone MinGW distribution in Windows, so we cannot rely on them
+#find_library is inducing errors in mingw and debian stretch, so we just hope gmp is installed and reachable...
 set(GMP_INCLUDE_DIR "" CACHE PATH "INCLUDE DIRECTORY FOR GMP")
-set(GMP_LIBRARY_CXX "gmpxx" CACHE PATH "PATH TO GMP C++ LIBRARY")
-set(GMP_LIBRARY_C   "gmp" CACHE PATH "PATH TO GMP C   LIBRARY")
-#find_path(GMP_INCLUDE_DIR    NAMES gmpxx.h )
-#find_library(GMP_LIBRARY_CXX NAMES gmpxx )
-#find_library(GMP_LIBRARY_C   NAMES gmp )
+set(GMP_LIBRARY_CXX "gmpxx" CACHE STRING "GMP C++ LIBRARY")
+set(GMP_LIBRARY_C   "gmp" CACHE STRING "GMP C   LIBRARY")
 
 set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
