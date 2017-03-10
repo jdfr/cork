@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.9)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0) #maybe it actually requires higher, but at most 3.5...
 
 #When it was released, cork required clang, but I have been able to compile it with GCC 5.3.1
 
@@ -6,23 +6,19 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8.9)
 #but there were issues with MPIR that do not seem to have been solved: https://github.com/gilbo/cork/issues/15
 #so, we fail fast if using a Visual studio generator
 
+include(config.cmake)
+
 if(MSVC)
   message(FATAL_ERROR "Error: compiling cork in Visual Studio is possible but not supported with this file (cork/CMakeLists.txt). Feel free to modify the file if you know what you are doing!!!!")
 endif()
 
 message("->CORK REQUIRES GMP COMPILED WITH C++ SUPPORT. PLEASE, MAKE SURE THAT GMP HEADER AND LIBRARIES ARE IN THEIR EXPECTED LOCATIONS")
-#find_library is inducing errors in mingw and debian stretch, so we just hope gmp is installed and reachable...
-set(GMP_INCLUDE_DIR "" CACHE PATH "INCLUDE DIRECTORY FOR GMP")
-set(GMP_LIBRARY_CXX "gmpxx" CACHE STRING "GMP C++ LIBRARY")
-set(GMP_LIBRARY_C   "gmp" CACHE STRING "GMP C   LIBRARY")
 
 set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 PROJECT(cork)
 
-if (NOT CMAKE_BUILD_TYPE)
-  SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release type")
-endif()
+SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release type")
 
 set(ADDITIONAL_FLAGS "-Wall -O2")
 
