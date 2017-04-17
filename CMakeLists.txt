@@ -16,9 +16,9 @@ message("->CORK REQUIRES GMP COMPILED WITH C++ SUPPORT. PLEASE, MAKE SURE THAT G
 
 set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-PROJECT(cork)
+SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release type") #this has to be placed before the PROJECT() command...
 
-SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release type")
+PROJECT(cork)
 
 set(ADDITIONAL_FLAGS "-Wall -O2")
 
