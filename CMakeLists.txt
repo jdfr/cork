@@ -12,7 +12,7 @@ if(MSVC)
   message(FATAL_ERROR "Error: compiling cork in Visual Studio is possible but not supported with this file (cork/CMakeLists.txt). Feel free to modify the file if you know what you are doing!!!!")
 endif()
 
-message("->CORK REQUIRES GMP COMPILED WITH C++ SUPPORT. PLEASE, MAKE SURE THAT GMP HEADER AND LIBRARIES ARE IN THEIR EXPECTED LOCATIONS")
+#CORK REQUIRES GMP COMPILED WITH C++ SUPPORT. PLEASE, MAKE SURE THAT GMP HEADER AND LIBRARIES ARE IN THEIR EXPECTED LOCATIONS
 
 set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
